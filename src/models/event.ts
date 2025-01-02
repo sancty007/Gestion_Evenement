@@ -1,7 +1,6 @@
-import { DataTypes, Model , Optional } from 'sequelize';
-import sequelize from '../config/database';
-
-
+import { DataTypes, Model, Optional } from "sequelize";
+import sequelize from "../config/database";
+import { User } from "./User";
 
 interface EventAttributes {
   id: number;
@@ -10,33 +9,38 @@ interface EventAttributes {
   startDate: Date; // Utilisation du type Date pour les dates
   endDate: Date;
   status: string;
+  // clé étrangère pour associer un utilisateur
+  userId: number;
 }
 
 // Définition des attributs optionnels pour l'insertion
-interface EventCreationAttributes extends Optional<EventAttributes, 'id'> {}
+interface EventCreationAttributes extends Optional<EventAttributes, "id"> {}
 
-
-export class Event extends Model<EventAttributes, EventCreationAttributes> implements EventAttributes {
+export class Event
+  extends Model<EventAttributes, EventCreationAttributes>
+  implements EventAttributes
+{
   public id!: number;
   public title!: string;
   public description!: string;
   public startDate!: Date;
   public endDate!: Date;
   public status!: string;
+  // clé étrangère pour associer un utilisateur
+  public userId!: number;
 
   // Timestamps
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
 }
 
-Event.init(
+export default Event.init(
   {
     id: {
       type: DataTypes.INTEGER.UNSIGNED,
       primaryKey: true,
-  
-      autoIncrement: true
 
+      autoIncrement: true,
     },
     title: {
       type: DataTypes.STRING,
@@ -57,14 +61,22 @@ Event.init(
     status: {
       type: DataTypes.STRING,
       allowNull: false,
-      defaultValue :'To Do'
+      defaultValue: "To Do",
     },
-    
+    userId: {
+      type: DataTypes.INTEGER.UNSIGNED,
+      references: {
+        model: User,
+        key: "id",
+      },
+      allowNull: false,
+      onDelete: "CASCADE",
+    },
   },
   {
     sequelize,
-    modelName: 'Event',
-    tableName: 'events',
+    modelName: "Event",
+    tableName: "events",
     timestamps: false,
   }
 );

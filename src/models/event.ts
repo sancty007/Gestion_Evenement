@@ -1,4 +1,4 @@
-import { DataTypes, Model, Optional } from "sequelize";
+/* import { DataTypes, Model, Optional } from "sequelize";
 import sequelize from "../config/database";
 import { User } from "./User";
 
@@ -80,3 +80,6 @@ export default Event.init(
     timestamps: false,
   }
 );
+
+Event.belongsTo(User, { foreignKey: "userId", as: "user" });
+ */

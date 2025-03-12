@@ -1,6 +1,6 @@
-import { DataTypes, Model, Optional } from "sequelize";
+/* import { DataTypes, Model, Optional } from "sequelize";
 import sequelize from "../config/database";
-import Event from "./event";
+import { Event } from "./event";
 
 interface UserAttributes {
   id: number;
@@ -23,6 +23,7 @@ export class User
   // Timestamps
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
+  //events: any;
 }
 
 User.init(
@@ -49,9 +50,14 @@ User.init(
       },
     },
   },
-  { sequelize, modelName: "user" }
+  {
+    sequelize,
+    modelName: "User",
+    tableName: "user",
+    timestamps: false,
+  }
 );
 
-// Définir la relation dans Sequelize
-User.hasMany(Event, { foreignKey: "userId", as: "events" });
-Event.belongsTo(User, { foreignKey: "userId", as: "user" });
+// Définir la relation
+User.hasMany(Event, { foreignKey: "userId" });
+ */

@@ -1,4 +1,4 @@
-const mysql = require('mysql');
+/* const mysql = require('mysql');
 
 const connection = mysql.createConnection({
     host: 'localhost',
@@ -14,4 +14,4 @@ connection.connect((err) => {
         console.log("Connected to the database successfully");
     }
     connection.end();
-});
+}); */

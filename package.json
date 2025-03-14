@@ -1,12 +1,12 @@
 {
   "name": "event_app",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "api/index.js",
   "scripts": {
     "build": "tsc",
     "dev": "ts-node-dev src/server.ts",
     "start": "node dist/server.js",
-    "vercel-build": "tsc",
+    "vercel-build": "tsc && cp -r api dist/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

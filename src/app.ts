@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import express from "express";
 import { Pool } from "pg";
 import eventRoutes from "./routes/eventRoutes";
+import { Request, Response, NextFunction } from "express";
 
 // Charger les variables d'environnement
 dotenv.config();
@@ -16,7 +17,7 @@ app.use(cors());
 app.use(express.json());
 
 // Logger simple pour les requêtes
-app.use((req, _res, next) => {
+app.use((req: Request, res: Response, next: NextFunction) => {
   console.log(`${req.method} ${req.url}`);
   next();
 });
